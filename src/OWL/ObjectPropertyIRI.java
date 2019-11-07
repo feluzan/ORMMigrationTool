@@ -114,6 +114,18 @@ public enum ObjectPropertyIRI {
 		}
 	},
 	
+	HAS_CARDINALITY{
+		public String toString() {
+			return "#has_cardinality";
+		}
+	},
+	
+	MAPPED_BY{
+		public String toString() {
+			return "#mapped_by";
+		}
+	},
+	
 	BELONGS_TO{
 		public String toString() {
 			return "#belongs_to";

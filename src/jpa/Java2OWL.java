@@ -28,14 +28,13 @@ import com.github.javaparser.ast.nodeTypes.NodeWithSimpleName;
 import ORM.ClassMapping;
 import ORM.InheritanceMapping;
 import ORM.InheritanceStrategy;
-import ORM.RelationshipMapping;
+import ORM.RelationshipCardinality;
 import ORM.RelationshipType;
 import ORM.VariableMapping;
 import OWL.ClassIRI;
 import OWL.DataPropertyIRI;
 import OWL.ObjectPropertyIRI;
 import database.Column;
-import database.RelationshipAssociationTable;
 import database.Table;
 import database.TableType;
 import genericcode.GenericClass;
@@ -52,10 +51,10 @@ public class Java2OWL {
 	public static Map<String, PrimitiveType> primitiveTypes = new HashMap<String, PrimitiveType>();
 	public static Map<String, GenericClass> classes = new HashMap<String, GenericClass>();
 	public static Map<GenericClass, InheritanceMapping> inheritanceMappings = new HashMap<GenericClass, InheritanceMapping>();
-	
 	public static Map<GenericClass, ClassMapping> classMappings = new HashMap<GenericClass, ClassMapping>();
-	
 	public static Map<GenericClass, Table> tables = new HashMap<GenericClass, Table>();
+	public static Map<String, GenericVariable> variables = new HashMap<String, GenericVariable>();
+	public static Map<GenericVariable, VariableMapping> variableMappings = new HashMap<GenericVariable, VariableMapping>();
 
 	
 	public Java2OWL(File folder, OWLOntology ormfo) {
@@ -86,12 +85,12 @@ public class Java2OWL {
 		processInheritance();
 		processClassMappings();
 		processTables();
+		
+		processFields();
+		processVariableMappings();
+		processColumns();
 //		
-//		processFields();
-//		processVariableMappings();
-//		processColumns();
-//		
-//		processRelationships();
+		processRelationships();
 
 //		processRelationshipAssociationTables();
 		
@@ -236,107 +235,104 @@ public class Java2OWL {
 		}
 	}
 
+	private void processFields() {
 	
+		for(GenericClass gc : classes.values()) {
+			for(FieldDeclaration field : ((JavaClass)gc).getFields()) {
+				JavaVariable jv = new JavaVariable(this.ormfo,gc,field);
+				jv.setDataProperty(DataPropertyIRI.VARIABLE_NAME, jv.getCodeName());
+				variables.put(jv.get_class().getCodeName() + "." + jv.getCodeName(), jv);
+				
+				
+				//VALUE TYPE
+				String codeType = jv.getCodeType();
+				int i = codeType.indexOf("<");
+				if(i>0){
+					codeType = codeType.substring(codeType.indexOf("<")+1);
+					codeType = codeType.substring(0,codeType.indexOf(">"));
+				}
+				Type type = classes.get(codeType);
+				if(type==null) {
+					type = primitiveTypes.get(JavaPrimitiveType.getJavaPrimitiveType(codeType).toString());
+				}
+				if(type==null) {
+					System.out.println("[ERROR] Type não encontado. O programa será encerrado.");
+					System.exit(1);
+				}
+				ValueType vt = new ValueType(this.ormfo,jv,type);
+			}
+		}
+	}
 	
+	private void processVariableMappings() {
 	
+		for(GenericVariable gv : variables.values()) {
+			if(gv.isMapped()) {
+				VariableMapping vm = new VariableMapping(this.ormfo, gv);
+				variableMappings.put(gv, vm);
+				
+				}
+		}
+	}
 	
+	private void processColumns() {
+		for(VariableMapping vm : variableMappings.values()) {
+			Column c = new Column(this.ormfo,vm);
+		}
+	}
 	
-//	public void printFile(String filePath) {
-//		System.out.print("[INFO] Iniciando escrita no arquivo " + filePath + "...");
-//		File outfile = new File(filePath);
-//		try {
-//			this.manager.saveOntology(this.ormfo, new OWLXMLDocumentFormat(),new FileOutputStream(outfile));
-//		} catch (OWLOntologyStorageException e) {
-//			e.printStackTrace();
-//		} catch (FileNotFoundException e) {
-//			e.printStackTrace();
-//		}
-//		System.out.println("OK!");
-//	}
-//	
-
-//
-
-//	
-
-//	
-
-//
-//	
-//		
-//	private void processFields() {
-//		
-//		for(GenericClass gc : classes.values()) {
-//			for(FieldDeclaration field : ((JavaClass)gc).getFields()) {
-//				JavaVariable jv = new JavaVariable(this.ormfo,gc,field);
-//				jv.setDataProperty(DataPropertyIRI.VARIABLE_NAME, jv.getCodeName());
-//				variables.put(jv.get_class().getCodeName() + "." + jv.getCodeName(), jv);
-//				
-//				
-//				//VALUE TYPE
-//				String codeType = jv.getCodeType();
-//				int i = codeType.indexOf("<");
-//				if(i>0){
-//					codeType = codeType.substring(codeType.indexOf("<")+1);
-//					codeType = codeType.substring(0,codeType.indexOf(">"));
-//				}
-//				Type type = classes.get(codeType);
-//				if(type==null) {
-//					type = primitiveTypes.get(JavaPrimitiveType.getJavaPrimitiveType(codeType).toString());
-//				}
-//				if(type==null) {
-//					System.out.println("[ERROR] Type não encontado. O programa será encerrado.");
-//					System.exit(1);
-//				}
-//				ValueType vt = new ValueType(this.ormfo,jv,type);
-//			}
-//		}
-//	}
-//
-//	private void processVariableMappings() {
-//		
-//		for(GenericVariable gv : variables.values()) {
-//			if(gv.isMapped()) {
-//				VariableMapping vm = new VariableMapping(this.ormfo, gv);
-//				variableMappings.put(gv, vm);
-//				
-//				}
-//		}
-//	}
-//	
-//	private void processColumns() {
-//		for(VariableMapping vm : variableMappings.values()) {
-//			Column c = new Column(this.ormfo,vm);
-//		}
-//	}
-//
-//	private void processRelationships() {
-//		
-//		for(GenericVariable gv : variables.values()) {
-//			if(gv.isFk()) {
-//				RelationshipMapping rm = new RelationshipMapping(this.ormfo, gv);
-//				relationshipMappings.put(gv, rm);
-//			}
-//		}
-//		
-//		for(RelationshipMapping rm : relationshipMappings.values()) {
-//			GenericVariable gv = rm.getVariable();
-//			String mappedBy = ((JavaVariable)gv).getMappedBy();
-//			if(mappedBy==null) continue;
-//
-//			String targetClass = ((GenericClass)gv.getValueType().getType()).getCodeName();
-//			GenericVariable rv = variables.get(targetClass + "." + mappedBy);
-//			RelationshipMapping reverse = relationshipMappings.get(rv);
-//			rm.setReverse(reverse);
-//		}
-//		
+	private void processRelationships() {
+	
+		for(GenericVariable gv : variables.values()) {
+			if(gv.isFk()) {
+				RelationshipCardinality rc = new RelationshipCardinality(this.ormfo,gv);
+				
+				String mappedBy = ((JavaVariable)gv).getMappedBy();
+				if(mappedBy==null) continue;
+				
+				String targetClass = ((GenericClass)gv.getValueType().getType()).getCodeName();
+				GenericVariable rv = variables.get(targetClass + "." + mappedBy);
+				gv.setMappedBy(rv);
+			}
+		}
+	
 //		for (RelationshipMapping rm : relationshipMappings.values()) {
 //			RelationshipType rt = rm.getRelationshipType();
 //			if(rt == RelationshipType.MANY_TO_MANY) {
 //				RelationshipAssociationTable rat = new RelationshipAssociationTable(this.ormfo,rm);
 //			}
 //		}
-//	}
+	}
+	
+	
+	public void printFile(String filePath) {
+		System.out.print("[INFO] Iniciando escrita no arquivo " + filePath + "...");
+		File outfile = new File(filePath);
+		try {
+			this.manager.saveOntology(this.ormfo, new OWLXMLDocumentFormat(),new FileOutputStream(outfile));
+		} catch (OWLOntologyStorageException e) {
+			e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		System.out.println("OK!");
+	}
+
+
+	
+	
+	
+	
+	
+
+
+
+//
+
+//	
+
+//
+
 
 	
 }

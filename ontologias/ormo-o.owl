@@ -1,0 +1,297 @@
+<?xml version="1.0"?>
+<Ontology xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://nemo.inf.ufes.br/sfwon/orm-o.owl"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     ontologyIRI="http://nemo.inf.ufes.br/sfwon/orm-o.owl"
+     versionIRI="http://nemo.inf.ufes.br/sfwon/orm-o.owl">
+    <Prefix name="" IRI="http://nemo.inf.ufes.br/sfwon/orm-o.owl"/>
+    <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
+    <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+    <Prefix name="xml" IRI="http://www.w3.org/XML/1998/namespace"/>
+    <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
+    <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
+    <Import>file:/D:/Projetos/ORMMigrationTool/Ontologias/ooc-o_v2.owl</Import>
+    <Import>file:/D:/Projetos/ORMMigrationTool/Ontologias/rdbs-owl.owl</Import>
+    <Annotation>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <Literal>Ontologia de Mapeamento Objeto/Relacional</Literal>
+    </Annotation>
+    <Annotation>
+        <AnnotationProperty abbreviatedIRI="rdfs:isDefinedBy"/>
+        <Literal>Félix Zanetti</Literal>
+    </Annotation>
+    <Annotation>
+        <AnnotationProperty abbreviatedIRI="owl:versionInfo"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">2.0</Literal>
+    </Annotation>
+    <Declaration>
+        <Class IRI="#ORM-O::Class_Mapping"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ORM-O::Entity_Class"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ORM-O::Entity_Class_Value_Type"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ORM-O::Entity_Subclass"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ORM-O::Entity_Superclass"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ORM-O::Entity_Table"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ORM-O::Foreign_Key_Mapping"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ORM-O::Inheritance_Mapping"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ORM-O::Mapped_Foreign_Key"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ORM-O::Mapped_Primary_Key"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ORM-O::Mapped_Variable"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ORM-O::Multiple_Entities_Table"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ORM-O::Primary_Key_Mapping"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ORM-O::Relationship_Cardinality"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ORM-O::Single_Entity_Table"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ORM-O::Single_Table_Inheritance_Mapping"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ORM-O::Table_per_Class_Inheritance_Mapping"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ORM-O::Table_per_Concrete_Class_Inheritance_Mapping"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ORM-O::Variable_Mapping"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#ORM-O::directlyRelatedTo"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#ORM-O::hasCardinality"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#ORM-O::inverseOf"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#ORM-O::mappedBy"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#ORM-O::mappedTo"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#ORM-O::variableMappedBy"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#ORM-O::variableMappedTo"/>
+    </Declaration>
+    <SubClassOf>
+        <Class IRI="#ORM-O::Entity_Class"/>
+        <Class IRI="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Class"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ORM-O::Entity_Class_Value_Type"/>
+        <Class IRI="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Value_Type"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ORM-O::Entity_Subclass"/>
+        <Class IRI="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Subclass"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ORM-O::Entity_Superclass"/>
+        <Class IRI="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Superclass"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ORM-O::Entity_Table"/>
+        <Class IRI="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::Table"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ORM-O::Foreign_Key_Mapping"/>
+        <Class IRI="#ORM-O::Variable_Mapping"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ORM-O::Mapped_Foreign_Key"/>
+        <Class IRI="#ORM-O::Mapped_Variable"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ORM-O::Mapped_Primary_Key"/>
+        <Class IRI="#ORM-O::Mapped_Variable"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ORM-O::Mapped_Variable"/>
+        <Class IRI="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Instance_Variable"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ORM-O::Multiple_Entities_Table"/>
+        <Class IRI="#ORM-O::Entity_Table"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ORM-O::Primary_Key_Mapping"/>
+        <Class IRI="#ORM-O::Variable_Mapping"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ORM-O::Single_Entity_Table"/>
+        <Class IRI="#ORM-O::Entity_Table"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ORM-O::Single_Table_Inheritance_Mapping"/>
+        <Class IRI="#ORM-O::Inheritance_Mapping"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ORM-O::Table_per_Class_Inheritance_Mapping"/>
+        <Class IRI="#ORM-O::Inheritance_Mapping"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ORM-O::Table_per_Concrete_Class_Inheritance_Mapping"/>
+        <Class IRI="#ORM-O::Inheritance_Mapping"/>
+    </SubClassOf>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#ORM-O::directlyRelatedTo"/>
+        <Class IRI="#ORM-O::Entity_Table"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#ORM-O::hasCardinality"/>
+        <Class IRI="#ORM-O::Mapped_Foreign_Key"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#ORM-O::inverseOf"/>
+        <Class IRI="#ORM-O::Mapped_Foreign_Key"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#ORM-O::mappedBy"/>
+        <Class IRI="#ORM-O::Entity_Class"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#ORM-O::mappedBy"/>
+        <Class IRI="#ORM-O::Entity_Subclass"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#ORM-O::mappedBy"/>
+        <Class IRI="#ORM-O::Entity_Superclass"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#ORM-O::mappedTo"/>
+        <Class IRI="#ORM-O::Class_Mapping"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#ORM-O::mappedTo"/>
+        <Class IRI="#ORM-O::Single_Table_Inheritance_Mapping"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#ORM-O::mappedTo"/>
+        <Class IRI="#ORM-O::Table_per_Class_Inheritance_Mapping"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#ORM-O::mappedTo"/>
+        <Class IRI="#ORM-O::Table_per_Concrete_Class_Inheritance_Mapping"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#ORM-O::variableMappedBy"/>
+        <Class IRI="#ORM-O::Mapped_Foreign_Key"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#ORM-O::variableMappedBy"/>
+        <Class IRI="#ORM-O::Mapped_Primary_Key"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#ORM-O::variableMappedBy"/>
+        <Class IRI="#ORM-O::Mapped_Variable"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#ORM-O::variableMappedTo"/>
+        <Class IRI="#ORM-O::Foreign_Key_Mapping"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#ORM-O::variableMappedTo"/>
+        <Class IRI="#ORM-O::Primary_Key_Mapping"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#ORM-O::variableMappedTo"/>
+        <Class IRI="#ORM-O::Variable_Mapping"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#ORM-O::directlyRelatedTo"/>
+        <Class IRI="#ORM-O::Entity_Class"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#ORM-O::hasCardinality"/>
+        <Class IRI="#ORM-O::Relationship_Cardinality"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#ORM-O::inverseOf"/>
+        <Class IRI="#ORM-O::Mapped_Foreign_Key"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#ORM-O::mappedBy"/>
+        <Class IRI="#ORM-O::Class_Mapping"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#ORM-O::mappedBy"/>
+        <Class IRI="#ORM-O::Inheritance_Mapping"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#ORM-O::mappedTo"/>
+        <Class IRI="#ORM-O::Entity_Table"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#ORM-O::mappedTo"/>
+        <Class IRI="#ORM-O::Inheritance_Mapping"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#ORM-O::mappedTo"/>
+        <Class IRI="#ORM-O::Multiple_Entities_Table"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#ORM-O::mappedTo"/>
+        <Class IRI="#ORM-O::Single_Entity_Table"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#ORM-O::variableMappedBy"/>
+        <Class IRI="#ORM-O::Foreign_Key_Mapping"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#ORM-O::variableMappedBy"/>
+        <Class IRI="#ORM-O::Primary_Key_Mapping"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#ORM-O::variableMappedBy"/>
+        <Class IRI="#ORM-O::Variable_Mapping"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#ORM-O::variableMappedTo"/>
+        <Class IRI="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::Column"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#ORM-O::variableMappedTo"/>
+        <Class IRI="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::ForeignKeyColumn"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#ORM-O::variableMappedTo"/>
+        <Class IRI="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::PrimaryKeyColumn"/>
+    </ObjectPropertyRange>
+</Ontology>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+

@@ -53,31 +53,31 @@ public class DjangoVariable extends GenericVariable {
 				ret+=this.getCodeName() + " = ";
 				String classCodeName = gc.getCodeName();
 //				System.out.println("Classe: " + classCodeName);
-				RelationshipType rt = this.getRelationshipMapping().getRelationshipType();
+//				RelationshipType rt = this.getRelationshipMapping().getRelationshipType();
 //				System.out.println(rt);
-				switch(rt) {
-					case MANY_TO_MANY:
-						ret += "models.ManyToManyField";
-						parameters.add("'" + gc.getCodeName() + "'");
-						break;
-					case MANY_TO_ONE:
-						ret += "models.ForeignKey";
-						parameters.add("'" + gc.getCodeName() + "'");
-						parameters.add("on_delete=models.CASCADE");
-						break;
-					case ONE_TO_MANY:
-						ret = "models.IntegerField"; 
-			   			System.out.println("[WARN] Tipo " + gc.getCodeName() + " mapeado para Integer.");
-						break;
-					case ONE_TO_ONE:
-						ret += "models.OneToOneField";
-						parameters.add("'" + gc.getCodeName() + "'");
-						parameters.add("on_delete=models.CASCADE");
-						break;
-					default:
-//						System.out.println("Defaaaault............................");
-							
-				}
+//				switch(rt) {
+//					case MANY_TO_MANY:
+//						ret += "models.ManyToManyField";
+//						parameters.add("'" + gc.getCodeName() + "'");
+//						break;
+//					case MANY_TO_ONE:
+//						ret += "models.ForeignKey";
+//						parameters.add("'" + gc.getCodeName() + "'");
+//						parameters.add("on_delete=models.CASCADE");
+//						break;
+//					case ONE_TO_MANY:
+//						ret = "models.IntegerField"; 
+//			   			System.out.println("[WARN] Tipo " + gc.getCodeName() + " mapeado para Integer.");
+//						break;
+//					case ONE_TO_ONE:
+//						ret += "models.OneToOneField";
+//						parameters.add("'" + gc.getCodeName() + "'");
+//						parameters.add("on_delete=models.CASCADE");
+//						break;
+//					default:
+////						System.out.println("Defaaaault............................");
+//							
+//				}
 			}else {
 				System.out.println("[ERROR] Problema ao identificar o tipo da variável.");
 				System.out.println("\tO programa será encerrado.");

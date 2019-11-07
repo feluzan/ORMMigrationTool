@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+    <uri id="Imports Wizard Entry" name="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl" uri="rdbs-owl.owl"/>
+    <group id="Folder Repository, directory=, recursive=true, Auto-Update=true, version=2" prefer="public" xml:base="">
+        <uri id="Automatically generated entry, Timestamp=1573054453380" name="http://nemo.inf.ufes.br/sfwon/ooc-o.owl" uri="ooc-o_v2.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1573054453380" name="http://nemo.inf.ufes.br/sfwon/orm-o.owl" uri="ormo-o.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1573054453380" name="http://rdbs-o" uri="rdbs-owl.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1573054453380" name="http://www.semanticweb.org/camila/ontologies/2018/4/RDB" uri="RDB_01.owl"/>
+    </group>
+</catalog>

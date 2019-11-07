@@ -3,7 +3,7 @@ package genericcode;
 import org.semanticweb.owlapi.model.OWLNamedIndividual;
 import org.semanticweb.owlapi.model.OWLOntology;
 
-import ORM.RelationshipMapping;
+import ORM.RelationshipCardinality;
 import ORM.RelationshipType;
 import ORM.VariableMapping;
 import OWL.Individual;
@@ -19,7 +19,7 @@ public abstract class GenericVariable extends Individual{
 	private VariableMapping variableMapping;
 	private ValueType valueType;
 	private RelationshipType relationshipType;
-	private RelationshipMapping relationshipMapping;
+	private RelationshipCardinality relationshipCardinality;
 	
 
 	public GenericVariable(OWLOntology o, String iri) {
@@ -32,8 +32,8 @@ public abstract class GenericVariable extends Individual{
 		this.setMapped(false);
 		this.setPk(false);
 		this.setFk(false);
-		// TODO Auto-generated constructor stub
 	}
+	
 	public boolean isPk() {
 		return pk;
 	}
@@ -48,6 +48,10 @@ public abstract class GenericVariable extends Individual{
 		this.fk = fk;
 	}
 
+	public void setMappedBy(GenericVariable gv) {
+		this.setObjectProperty(ObjectPropertyIRI.MAPPED_BY, gv);
+	}
+	
 	public void setCodeName(String codeName) {
 		this.codeName = codeName;
 	}
@@ -99,11 +103,11 @@ public abstract class GenericVariable extends Individual{
 		this.relationshipType = relationshipType;
 	}
 	
-	public void setRelationshipMapping(RelationshipMapping rm) {
-		this.relationshipMapping = rm;
+	public void setRelationshipCardinality(RelationshipCardinality rc) {
+		this.relationshipCardinality = rc;
 	}
-	public RelationshipMapping getRelationshipMapping() {
-		return this.relationshipMapping;
+	public RelationshipCardinality getRelationshipCardinality() {
+		return this.relationshipCardinality;
 	}
 	
 	public abstract String toCode();

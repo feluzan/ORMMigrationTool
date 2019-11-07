@@ -3,19 +3,25 @@ package ORM;
 public enum RelationshipType {
 	ONE_TO_ONE{
 		public String toString() {
-			return "One To One";
+			return "One_To_One";
 		}
-	}, ONE_TO_MANY{
+	},
+	
+	ONE_TO_MANY{
 		public String toString() {
-			return "One To Many";
+			return "One_To_Many";
 		}
-	}, MANY_TO_ONE{
+	},
+	
+	MANY_TO_ONE{
 		public String toString() {
-			return "Many To One";
+			return "Many_To_One";
 		}
-	}, MANY_TO_MANY{
+	},
+	
+	MANY_TO_MANY{
 		public String toString() {
-			return "Many To Many";
+			return "Many_To_Many";
 		}
 	};
 

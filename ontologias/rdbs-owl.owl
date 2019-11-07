@@ -1,0 +1,388 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://rdbs-o#"
+     xml:base="http://rdbs-o"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl">
+        <owl:versionIRI rdf:resource="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl"/>
+        <rdfs:comment>Ontology for Relational Database System.</rdfs:comment>
+        <rdfs:isDefinedBy>Camila Z. Aguiar</rdfs:isDefinedBy>
+        <owl:versionInfo>v-01</owl:versionInfo>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::belongsToReferencingTable -->
+
+    <owl:ObjectProperty rdf:about="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::belongsToReferencingTable">
+        <rdfs:domain rdf:resource="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::ForeignKeyColumn"/>
+        <rdfs:range rdf:resource="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::ReferencingTable"/>
+        <rdfs:range>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::belongsToReferencingTable"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::ReferencingTable"/>
+            </owl:Restriction>
+        </rdfs:range>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::belongsToTable -->
+
+    <owl:ObjectProperty rdf:about="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::belongsToTable">
+        <rdfs:domain rdf:resource="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::TableConstraint"/>
+        <rdfs:range rdf:resource="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::Table"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::constitutedOfColumn -->
+
+    <owl:ObjectProperty rdf:about="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::constitutedOfColumn">
+        <rdfs:domain rdf:resource="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::LineType"/>
+        <rdfs:range rdf:resource="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::Column"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::definedByDataType -->
+
+    <owl:ObjectProperty rdf:about="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::definedByDataType">
+        <rdfs:domain rdf:resource="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::Column"/>
+        <rdfs:range rdf:resource="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::DataType"/>
+        <rdfs:range>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::definedByDataType"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::DataType"/>
+            </owl:Restriction>
+        </rdfs:range>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::definesLineType -->
+
+    <owl:ObjectProperty rdf:about="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::definesLineType">
+        <rdfs:domain rdf:resource="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::Table"/>
+        <rdfs:range rdf:resource="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::LineType"/>
+        <rdfs:range>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::definesLineType"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::LineType"/>
+            </owl:Restriction>
+        </rdfs:range>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::refersToPrimaryKeyConstraint -->
+
+    <owl:ObjectProperty rdf:about="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::refersToPrimaryKeyConstraint">
+        <rdfs:domain rdf:resource="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::ForeignKeyConstraint"/>
+        <rdfs:range rdf:resource="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::PrimaryKeyConstraint"/>
+        <rdfs:range>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::refersToPrimaryKeyConstraint"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::PrimaryKeyConstraint"/>
+            </owl:Restriction>
+        </rdfs:range>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::refersToReferencedTable -->
+
+    <owl:ObjectProperty rdf:about="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::refersToReferencedTable">
+        <rdfs:domain rdf:resource="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::ForeignKeyColumn"/>
+        <rdfs:range rdf:resource="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::ReferencedTable"/>
+        <rdfs:range>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::refersToReferencedTable"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::ReferencedTable"/>
+            </owl:Restriction>
+        </rdfs:range>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::specifiesColumn -->
+
+    <owl:ObjectProperty rdf:about="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::specifiesColumn">
+        <rdfs:domain rdf:resource="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::CheckConstraint"/>
+        <rdfs:range rdf:resource="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::Column"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::specifiesForeignKeyColumn -->
+
+    <owl:ObjectProperty rdf:about="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::specifiesForeignKeyColumn">
+        <rdfs:domain rdf:resource="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::ForeignKeyConstraint"/>
+        <rdfs:range rdf:resource="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::ForeignKeyColumn"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::specifiesPrimaryKeyColumn -->
+
+    <owl:ObjectProperty rdf:about="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::specifiesPrimaryKeyColumn">
+        <rdfs:domain rdf:resource="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::PrimaryKeyConstraint"/>
+        <rdfs:domain>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::specifiesPrimaryKeyColumn"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::PrimaryKeyConstraint"/>
+            </owl:Restriction>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::PrimaryKeyColumn"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::BaseTable -->
+
+    <owl:Class rdf:about="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::BaseTable">
+        <rdfs:subClassOf rdf:resource="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::Table"/>
+        <owl:disjointWith rdf:resource="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::DerivedTable"/>
+        <rdfs:comment>Table that effectively represents data stored in the database, being autonomous and independent.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::CheckConstraint -->
+
+    <owl:Class rdf:about="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::CheckConstraint">
+        <rdfs:subClassOf rdf:resource="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::TableConstraint"/>
+        <rdfs:comment>Constraint that specifies a condition being satisfied if and only if the specified condition is not false for any line of the table.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::Column -->
+
+    <owl:Class rdf:about="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::Column">
+        <rdfs:comment>Column is the field of a table line type.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::ColumnConstraint -->
+
+    <owl:Class rdf:about="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::ColumnConstraint">
+        <rdfs:subClassOf rdf:resource="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::Constraint"/>
+        <rdfs:comment>Restriction defined on the values that a given column is allowed to assume.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::Constraint -->
+
+    <owl:Class rdf:about="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::Constraint">
+        <rdfs:comment>Formal expression of a database operating rule.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::DataType -->
+
+    <owl:Class rdf:about="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::DataType">
+        <rdfs:comment>Collection of representable and atomic values.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::DataTypeConstraint -->
+
+    <owl:Class rdf:about="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::DataTypeConstraint">
+        <rdfs:subClassOf rdf:resource="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::Constraint"/>
+        <rdfs:comment>Definition of the set of values that make up a data type.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::DatabaseConstraint -->
+
+    <owl:Class rdf:about="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::DatabaseConstraint">
+        <rdfs:subClassOf rdf:resource="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::Constraint"/>
+        <rdfs:comment>Restriction defined on the values that the given database is allowed to assume, involving two or more tables.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::DerivedTable -->
+
+    <owl:Class rdf:about="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::DerivedTable">
+        <rdfs:subClassOf rdf:resource="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::Table"/>
+        <rdfs:comment>Table that is not a base table and can be obtained from them through some relational expression, being non-autonomous and dependent.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::ExternalDataType -->
+
+    <owl:Class rdf:about="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::ExternalDataType">
+        <rdfs:subClassOf rdf:resource="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::DataType"/>
+        <owl:disjointWith rdf:resource="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::InternalDataType"/>
+        <rdfs:comment>User-defined data type from a simple system-defined or user-defined data type.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::ForeignKeyColumn -->
+
+    <owl:Class rdf:about="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::ForeignKeyColumn">
+        <rdfs:subClassOf rdf:resource="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::Column"/>
+        <rdfs:comment>Column of a referencing table whose values must correspond to values of some primary key column in some referenced table.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::ForeignKeyConstraint -->
+
+    <owl:Class rdf:about="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::ForeignKeyConstraint">
+        <rdfs:subClassOf rdf:resource="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::TableConstraint"/>
+        <rdfs:comment>Referencing restriction that specifies one or more columns of the referencing table that correspond to columns in an referenced table.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::InternalDataType -->
+
+    <owl:Class rdf:about="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::InternalDataType">
+        <rdfs:subClassOf rdf:resource="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::DataType"/>
+        <rdfs:comment>System-defined data type.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::Line -->
+
+    <owl:Class rdf:about="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::Line">
+        <rdfs:comment>Smallest unit of data that can be inserted or deleted into a table.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::LineType -->
+
+    <owl:Class rdf:about="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::LineType">
+        <rdfs:comment>Line type is the most specific type of a line containing a set of columns.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::PrimaryKeyColumn -->
+
+    <owl:Class rdf:about="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::PrimaryKeyColumn">
+        <rdfs:subClassOf rdf:resource="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::Column"/>
+        <rdfs:comment>Column defined from a Primary Key Constraint that identifies a single, non-null value for any instance of the table.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::PrimaryKeyConstraint -->
+
+    <owl:Class rdf:about="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::PrimaryKeyConstraint">
+        <rdfs:subClassOf rdf:resource="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::TableConstraint"/>
+        <rdfs:comment>Integrity constraint that satisfies the properties of uniqueness and irreducibility, that is, is what defines a unique line within a table.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::ReferencedTable -->
+
+    <owl:Class rdf:about="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::ReferencedTable">
+        <rdfs:subClassOf rdf:resource="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::Table"/>
+        <owl:disjointWith rdf:resource="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::ReferencingTable"/>
+        <rdfs:comment>Table that is referenced by a Foreign Key Column from a referencing table.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::ReferencingTable -->
+
+    <owl:Class rdf:about="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::ReferencingTable">
+        <rdfs:subClassOf rdf:resource="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::Table"/>
+        <rdfs:comment>Table that contains a Foreign Key Column.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::Table -->
+
+    <owl:Class rdf:about="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::Table">
+        <rdfs:comment>Logical structure of an RDBMS that is an abstraction of how the data is physically stored.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::TableConstraint -->
+
+    <owl:Class rdf:about="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::TableConstraint">
+        <rdfs:subClassOf rdf:resource="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::Constraint"/>
+        <rdfs:comment>Restriction on the values that certain table is allowed to assume involving only one table.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::CheckConstraint"/>
+            <rdf:Description rdf:about="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::ForeignKeyConstraint"/>
+            <rdf:Description rdf:about="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::PrimaryKeyConstraint"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::ColumnConstraint"/>
+            <rdf:Description rdf:about="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::DataTypeConstraint"/>
+            <rdf:Description rdf:about="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::DatabaseConstraint"/>
+            <rdf:Description rdf:about="http://nemo.inf.ufes.br/sfwon/rdbs-o.owl#RDBS-O::TableConstraint"/>
+        </owl:members>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+

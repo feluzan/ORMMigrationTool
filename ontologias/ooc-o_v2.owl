@@ -1,0 +1,599 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#"
+     xml:base="http://nemo.inf.ufes.br/sfwon/ooc-o.owl"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:ooc-o="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#">
+    <owl:Ontology rdf:about="http://nemo.inf.ufes.br/sfwon/ooc-o.owl">
+        <owl:versionIRI rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2000/01/rdf-schema#Literal">Ontologia que representa paradigma OO.</rdfs:comment>
+        <owl:versionInfo rdf:datatype="http://www.w3.org/2000/01/rdf-schema#Literal">1.0</owl:versionInfo>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::componentOfAbstractClass -->
+
+    <owl:ObjectProperty rdf:about="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::componentOfAbstractClass">
+        <rdfs:domain rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Abstract_Method"/>
+        <rdfs:range rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Abstract_Class"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::componentOfBlock -->
+
+    <owl:ObjectProperty rdf:about="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::componentOfBlock">
+        <rdfs:domain rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Block"/>
+        <rdfs:domain rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Local_Variable"/>
+        <rdfs:range rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Block"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::componentOfClass -->
+
+    <owl:ObjectProperty rdf:about="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::componentOfClass">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Member"/>
+        <rdfs:range rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Class"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::componentOfConcreteMethod -->
+
+    <owl:ObjectProperty rdf:about="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::componentOfConcreteMethod">
+        <rdfs:domain rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Block"/>
+        <rdfs:range rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Concrete_Method"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::componentOfExtendableClass -->
+
+    <owl:ObjectProperty rdf:about="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::componentOfExtendableClass">
+        <rdfs:domain rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Overridable_Method"/>
+        <rdfs:range rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Extendable_Class"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::componentOfGeneric -->
+
+    <owl:ObjectProperty rdf:about="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::componentOfGeneric">
+        <rdfs:domain rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Type_Parameter"/>
+        <rdfs:range>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::componentOfGeneric"/>
+                        <owl:someValuesFrom rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Generic_Class"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::componentOfGeneric"/>
+                        <owl:someValuesFrom rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Generic_Method"/>
+                    </owl:Restriction>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:range>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::componentOfMemberFunction -->
+
+    <owl:ObjectProperty rdf:about="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::componentOfMemberFunction">
+        <rdfs:domain rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Parameter_Variable"/>
+        <rdfs:range rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Member_Function"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::componentOfModule -->
+
+    <owl:ObjectProperty rdf:about="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::componentOfModule">
+        <rdfs:domain rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Module"/>
+        <rdfs:range rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Module"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::componentOfPhysicalModule -->
+
+    <owl:ObjectProperty rdf:about="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::componentOfPhysicalModule">
+        <rdfs:domain rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Class"/>
+        <rdfs:range rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Physical_Module"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::inheritanceVisibleBy -->
+
+    <owl:ObjectProperty rdf:about="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::inheritanceVisibleBy">
+        <rdfs:domain rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Inheritance"/>
+        <rdfs:range rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Inheritance_Visibility"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::inheritedIn -->
+
+    <owl:ObjectProperty rdf:about="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::inheritedIn">
+        <rdfs:domain rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Superclass"/>
+        <rdfs:range rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Inheritance"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::inheritsIn -->
+
+    <owl:ObjectProperty rdf:about="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::inheritsIn">
+        <rdfs:domain rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Subclass"/>
+        <rdfs:range rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Inheritance"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::mutableBy -->
+
+    <owl:ObjectProperty rdf:about="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::mutableBy">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdfs:domain rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Variable"/>
+        <rdfs:range rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Mutability"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::nestedIn -->
+
+    <owl:ObjectProperty rdf:about="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::nestedIn">
+        <rdfs:domain rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Nested_Class"/>
+        <rdfs:range rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Class"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::returnTypedBy -->
+
+    <owl:ObjectProperty rdf:about="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::returnTypedBy">
+        <rdfs:domain rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Member_Function"/>
+        <rdfs:range rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Return_Type"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::valueTypedBy -->
+
+    <owl:ObjectProperty rdf:about="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::valueTypedBy">
+        <rdfs:domain rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Variable"/>
+        <rdfs:range rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Value_Type"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::visibleBy -->
+
+    <owl:ObjectProperty rdf:about="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::visibleBy">
+        <rdfs:domain rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Named_Element"/>
+        <rdfs:range rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Element_Visibility"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::block_contents -->
+
+    <owl:DatatypeProperty rdf:about="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::block_contents">
+        <rdfs:domain rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Block"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::namedElement_name -->
+
+    <owl:DatatypeProperty rdf:about="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::namedElement_name">
+        <rdfs:domain rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Named_Element"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Abstract_Class -->
+
+    <owl:Class rdf:about="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Abstract_Class">
+        <rdfs:subClassOf rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Extendable_Class"/>
+        <owl:disjointWith rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Concrete_Class"/>
+    </owl:Class>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Abstract_Method -->
+
+    <owl:Class rdf:about="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Abstract_Method">
+        <rdfs:subClassOf rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Overridable_Method"/>
+        <owl:disjointWith rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Concrete_Method"/>
+    </owl:Class>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Accessor_Method -->
+
+    <owl:Class rdf:about="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Accessor_Method">
+        <rdfs:subClassOf rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Instance_Method"/>
+    </owl:Class>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Block -->
+
+    <owl:Class rdf:about="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Block"/>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Class -->
+
+    <owl:Class rdf:about="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Class">
+        <rdfs:subClassOf rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Named_Element"/>
+        <rdfs:subClassOf rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Type"/>
+        <owl:disjointWith rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Member_Function"/>
+        <owl:disjointWith rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Primitive_Type"/>
+        <owl:disjointWith rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Variable"/>
+    </owl:Class>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Class_Method -->
+
+    <owl:Class rdf:about="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Class_Method">
+        <rdfs:subClassOf rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Concrete_Method"/>
+        <rdfs:subClassOf rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Non-Overridable_Method"/>
+        <owl:disjointWith rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Instance_Method"/>
+    </owl:Class>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Class_Variable -->
+
+    <owl:Class rdf:about="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Class_Variable">
+        <rdfs:subClassOf rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Member_Variable"/>
+        <owl:disjointWith rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Instance_Variable"/>
+    </owl:Class>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Concrete_Class -->
+
+    <owl:Class rdf:about="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Concrete_Class">
+        <rdfs:subClassOf rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Class"/>
+    </owl:Class>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Concrete_Method -->
+
+    <owl:Class rdf:about="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Concrete_Method">
+        <rdfs:subClassOf rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Member_Function"/>
+    </owl:Class>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Constructor_Method -->
+
+    <owl:Class rdf:about="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Constructor_Method">
+        <rdfs:subClassOf rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Instance_Method"/>
+        <rdfs:subClassOf rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Non-Overridable_Method"/>
+    </owl:Class>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Destructor_Method -->
+
+    <owl:Class rdf:about="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Destructor_Method">
+        <rdfs:subClassOf rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Instance_Method"/>
+    </owl:Class>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Element_Visibility -->
+
+    <owl:Class rdf:about="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Element_Visibility"/>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Extendable_Class -->
+
+    <owl:Class rdf:about="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Extendable_Class">
+        <rdfs:subClassOf rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Class"/>
+        <owl:disjointWith rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Non-Extendable_Class"/>
+    </owl:Class>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Generic_Class -->
+
+    <owl:Class rdf:about="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Generic_Class">
+        <rdfs:subClassOf rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Class"/>
+    </owl:Class>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Generic_Method -->
+
+    <owl:Class rdf:about="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Generic_Method">
+        <rdfs:subClassOf rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Member_Function"/>
+    </owl:Class>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Inheritance -->
+
+    <owl:Class rdf:about="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Inheritance"/>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Inheritance_Visibility -->
+
+    <owl:Class rdf:about="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Inheritance_Visibility"/>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Instance_Method -->
+
+    <owl:Class rdf:about="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Instance_Method">
+        <rdfs:subClassOf rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Concrete_Method"/>
+    </owl:Class>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Instance_Variable -->
+
+    <owl:Class rdf:about="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Instance_Variable">
+        <rdfs:subClassOf rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Member_Variable"/>
+    </owl:Class>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Local_Variable -->
+
+    <owl:Class rdf:about="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Local_Variable">
+        <rdfs:subClassOf rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Method_Variable"/>
+        <owl:disjointWith rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Parameter_Variable"/>
+    </owl:Class>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Logical_Module -->
+
+    <owl:Class rdf:about="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Logical_Module">
+        <rdfs:subClassOf rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Module"/>
+        <owl:disjointWith rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Physical_Module"/>
+    </owl:Class>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Member -->
+
+    <owl:Class rdf:about="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Member"/>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Member_Function -->
+
+    <owl:Class rdf:about="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Member_Function">
+        <rdfs:subClassOf rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Member"/>
+        <rdfs:subClassOf rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Named_Element"/>
+        <owl:disjointWith rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Member_Variable"/>
+        <owl:disjointWith rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Variable"/>
+    </owl:Class>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Member_Variable -->
+
+    <owl:Class rdf:about="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Member_Variable">
+        <rdfs:subClassOf rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Member"/>
+        <rdfs:subClassOf rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Variable"/>
+    </owl:Class>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Method_Variable -->
+
+    <owl:Class rdf:about="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Method_Variable">
+        <rdfs:subClassOf rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Variable"/>
+    </owl:Class>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Module -->
+
+    <owl:Class rdf:about="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Module"/>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Mutability -->
+
+    <owl:Class rdf:about="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Mutability"/>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Named_Element -->
+
+    <owl:Class rdf:about="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Named_Element"/>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Nested_Class -->
+
+    <owl:Class rdf:about="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Nested_Class">
+        <rdfs:subClassOf rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Class"/>
+    </owl:Class>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Non-Extendable_Class -->
+
+    <owl:Class rdf:about="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Non-Extendable_Class">
+        <rdfs:subClassOf rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Class"/>
+    </owl:Class>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Non-Overridable_Method -->
+
+    <owl:Class rdf:about="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Non-Overridable_Method">
+        <rdfs:subClassOf rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Member_Function"/>
+        <owl:disjointWith rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Overridable_Method"/>
+    </owl:Class>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Overridable_Method -->
+
+    <owl:Class rdf:about="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Overridable_Method">
+        <rdfs:subClassOf rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Member_Function"/>
+    </owl:Class>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Parameter_Variable -->
+
+    <owl:Class rdf:about="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Parameter_Variable">
+        <rdfs:subClassOf rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Method_Variable"/>
+    </owl:Class>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Physical_Module -->
+
+    <owl:Class rdf:about="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Physical_Module">
+        <rdfs:subClassOf rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Module"/>
+    </owl:Class>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Primitive_Type -->
+
+    <owl:Class rdf:about="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Primitive_Type">
+        <rdfs:subClassOf rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Type"/>
+    </owl:Class>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Return_Type -->
+
+    <owl:Class rdf:about="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Return_Type"/>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Root_Class -->
+
+    <owl:Class rdf:about="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Root_Class">
+        <rdfs:subClassOf rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Extendable_Class"/>
+    </owl:Class>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Subclass -->
+
+    <owl:Class rdf:about="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Subclass">
+        <rdfs:subClassOf rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Class"/>
+    </owl:Class>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Superclass -->
+
+    <owl:Class rdf:about="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Superclass">
+        <rdfs:subClassOf rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Extendable_Class"/>
+    </owl:Class>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Type -->
+
+    <owl:Class rdf:about="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Type"/>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Type_Parameter -->
+
+    <owl:Class rdf:about="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Type_Parameter">
+        <rdfs:subClassOf rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Type"/>
+    </owl:Class>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Value_Type -->
+
+    <owl:Class rdf:about="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Value_Type"/>
+    
+
+
+    <!-- http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Variable -->
+
+    <owl:Class rdf:about="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Variable">
+        <rdfs:subClassOf rdf:resource="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Named_Element"/>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Accessor_Method"/>
+            <rdf:Description rdf:about="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Constructor_Method"/>
+            <rdf:Description rdf:about="http://nemo.inf.ufes.br/sfwon/ooc-o.owl#OOC-O::Destructor_Method"/>
+        </owl:members>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+

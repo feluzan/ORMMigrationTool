@@ -32,7 +32,6 @@ import org.semanticweb.owlapi.reasoner.structural.StructuralReasonerFactory;
 import ORM.ClassMapping;
 import ORM.InheritanceMapping;
 import ORM.InheritanceStrategy;
-import ORM.RelationshipMapping;
 import ORM.RelationshipType;
 import ORM.VariableMapping;
 import OWL.ClassIRI;
@@ -65,7 +64,7 @@ public class OWL2Django {
 	private Map<OWLIndividual, ValueType> valueTypes = new HashMap<OWLIndividual, ValueType>();
 	
 	private Map<OWLIndividual, PrimitiveType> primitiveTypes = new HashMap<OWLIndividual, PrimitiveType>();
-	private Map<OWLIndividual, RelationshipMapping> relationshipMappings = new HashMap<OWLIndividual, RelationshipMapping>();
+//	private Map<OWLIndividual, RelationshipMapping> relationshipMappings = new HashMap<OWLIndividual, RelationshipMapping>();
 	
 	public OWL2Django(String OWLPath) {
 		
@@ -479,12 +478,12 @@ public class OWL2Django {
 			rangesSet = rangesStream.collect(Collectors.toSet());
 			rangesSetIterator = rangesSet.iterator();
 			if(rangesSetIterator.hasNext()) {
-				RelationshipMapping rm = new RelationshipMapping(this.o, rangesSetIterator.next());
-				relationshipMappings.put(rm.getIndividual(), rm);
-				rm.setVariable(dv);
-				dv.setRelationshipMapping(rm);
-				Stream<OWLClass> rmAllClassesStream = reasoner.getTypes(rm.getIndividual()).entities();
-				Set<OWLClass> rmAllClasses = rmAllClassesStream.collect(Collectors.toSet());
+//				RelationshipMapping rm = new RelationshipMapping(this.o, rangesSetIterator.next());
+//				relationshipMappings.put(rm.getIndividual(), rm);
+//				rm.setVariable(dv);
+//				dv.setRelationshipMapping(rm);
+//				Stream<OWLClass> rmAllClassesStream = reasoner.getTypes(rm.getIndividual()).entities();
+//				Set<OWLClass> rmAllClasses = rmAllClassesStream.collect(Collectors.toSet());
 				
 //				if(rmAllClasses.contains(ClassIRI.ONE_TO_ONE_RELATIONSHIP_MAPPING.getOWLClass(o))) {
 //					rm.setRelationshipType(RelationshipType.ONE_TO_ONE);
