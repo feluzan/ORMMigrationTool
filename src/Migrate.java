@@ -24,13 +24,10 @@ public class Migrate {
 		System.out.print("[INFO] Iniciando leitura da ORM-O...");
 		OWLOntologyManager manager = OWLManager.createOWLOntologyManager();
 		File ORMFOFile = new File(ORMFOPath);
-		System.out.println("file criado...");
 		OWLOntology ormfo=null;
 		OWLDataFactory factory = manager.getOWLDataFactory();
-		System.out.println("data factory criado...");
 		try {
 			ormfo = manager.loadOntologyFromOntologyDocument(ORMFOFile);
-			System.out.println("owl ontology carregada...");
 		} catch (OWLOntologyCreationException e) {
 			System.out.println("[ERROR] Houve algum problema ao carregar a ontologia.");
 			System.out.println("\tO programa será encerrado.");
@@ -74,11 +71,11 @@ public class Migrate {
 		java2owl.printFile(owlPath);
 	
 		
-//		System.out.println("\n[INFO] Iniciando Etapa OWL -> Python");
+		System.out.println("\n[INFO] Iniciando Etapa OWL -> Python");
 //
-//		OWL2Django owl2Django = new OWL2Django(owlPath);
-//		System.out.println("\n[INFO] Iniciando escrita no arquivo " + djangoPath + "...");
-//		owl2Django.printFile(djangoPath);
+		OWL2Django owl2Django = new OWL2Django(owlPath);
+		System.out.println("\n[INFO] Iniciando escrita no arquivo " + djangoPath + "...");
+		owl2Django.printFile(djangoPath);
 
 		System.out.println("Fim!");
 		

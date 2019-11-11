@@ -1,6 +1,7 @@
 package ORM;
 
 
+import org.semanticweb.owlapi.model.OWLNamedIndividual;
 import org.semanticweb.owlapi.model.OWLOntology;
 
 import OWL.ClassIRI;
@@ -21,4 +22,8 @@ public class RelationshipCardinality extends Individual {
 
 	}
 
+	
+	public RelationshipCardinality(OWLOntology o,OWLNamedIndividual i) {
+		super(o,i);
+	}
 }

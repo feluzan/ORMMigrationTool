@@ -32,6 +32,7 @@ import org.semanticweb.owlapi.reasoner.structural.StructuralReasonerFactory;
 import ORM.ClassMapping;
 import ORM.InheritanceMapping;
 import ORM.InheritanceStrategy;
+import ORM.RelationshipCardinality;
 import ORM.RelationshipType;
 import ORM.VariableMapping;
 import OWL.ClassIRI;
@@ -64,6 +65,7 @@ public class OWL2Django {
 	private Map<OWLIndividual, ValueType> valueTypes = new HashMap<OWLIndividual, ValueType>();
 	
 	private Map<OWLIndividual, PrimitiveType> primitiveTypes = new HashMap<OWLIndividual, PrimitiveType>();
+	private Map<OWLIndividual, RelationshipCardinality> relationshipCardinalities = new HashMap<OWLIndividual, RelationshipCardinality>();
 //	private Map<OWLIndividual, RelationshipMapping> relationshipMappings = new HashMap<OWLIndividual, RelationshipMapping>();
 	
 	public OWL2Django(String OWLPath) {
@@ -99,43 +101,33 @@ public class OWL2Django {
 	}
 
 
-	public void printFile(String filePath) {
-		File outfile = new File(filePath);
-		
-		FileWriter fileWriter;
-		
-		try {
-			fileWriter = new FileWriter(outfile);
-			PrintWriter printWriter = new PrintWriter(fileWriter);
+	private void retrievePrimitiveTypes() {
+		OWLReasonerFactory reasonerFactory = new StructuralReasonerFactory();
+		OWLReasoner reasoner = reasonerFactory.createReasoner(this.o);
+
+		OWLClass c = ClassIRI.PRIMITIVE_TYPE.getOWLClass(o);
+		NodeSet<OWLNamedIndividual> individualsNodeSet = reasoner.getInstances(c,false);
+		Stream<OWLNamedIndividual> individuals = individualsNodeSet.entities();
+
+		Iterator<OWLNamedIndividual> individualsAsIterator = individuals.iterator();
+		while(individualsAsIterator.hasNext()) {
+			OWLNamedIndividual i = individualsAsIterator.next();
+			PrimitiveType pt = new PrimitiveType(this.o, i);
+			primitiveTypes.put(i, pt);
 			
-			String importString = "from django.db import models\n\n";
-			printWriter.print(importString);
-			
-			//imprimir todas as classes que não são subclasses
-			for(GenericClass c : classes.values()) {
-				if(c.isSubclass()) continue;
-				printWriter.print(c.toCode());
-				
+			Set<OWLLiteral> dataPropertySet;
+			Iterator<OWLLiteral> dataPropertyIterator;
+			dataPropertySet = reasoner.getDataPropertyValues(pt.getIndividual(), DataPropertyIRI.TYPE_NAME.getOWLDataProperty(this.o));
+			dataPropertyIterator = dataPropertySet.iterator();
+
+			if(dataPropertyIterator.hasNext()) {
+				String name =dataPropertyIterator.next().getLiteral();
+				pt.setTypeName(name);
+			}else {
+				System.out.println("[ERROR] Erro ao identificar o nome do tipo primitivo.");
+				System.out.println("\tO programa será encerrado.");
+				System.exit(1);
 			}
-			
-			for(GenericClass c : classes.values()) {
-				if(!c.isSubclass()) continue;
-				InheritanceMapping im = null;
-				for(InheritanceMapping inh : inheritanceMappings.values()) {
-					if(inh.getSubclass().equals(c)) im = inh;
-				}
-				printWriter.print(c.toCode(im));
-				
-			}
-			
-			printWriter.close();
-			
-			
-		} catch (Exception e) {
-			System.out.println("[ERROR] Erro ao imprimir no arquivo " + filePath);
-			System.out.println("\tO programa será encerrado.");
-//			e.printStackTrace();
-			System.exit(1);
 		}
 	}
 	
@@ -167,36 +159,6 @@ public class OWL2Django {
 
 		}
 		
-	}
-	
-	private void retrievePrimitiveTypes() {
-		OWLReasonerFactory reasonerFactory = new StructuralReasonerFactory();
-		OWLReasoner reasoner = reasonerFactory.createReasoner(this.o);
-
-		OWLClass c = ClassIRI.PRIMITIVE_TYPE.getOWLClass(o);
-		NodeSet<OWLNamedIndividual> individualsNodeSet = reasoner.getInstances(c,false);
-		Stream<OWLNamedIndividual> individuals = individualsNodeSet.entities();
-
-		Iterator<OWLNamedIndividual> individualsAsIterator = individuals.iterator();
-		while(individualsAsIterator.hasNext()) {
-			OWLNamedIndividual i = individualsAsIterator.next();
-			PrimitiveType pt = new PrimitiveType(this.o, i);
-			primitiveTypes.put(i, pt);
-			
-			Set<OWLLiteral> dataPropertySet;
-			Iterator<OWLLiteral> dataPropertyIterator;
-			dataPropertySet = reasoner.getDataPropertyValues(pt.getIndividual(), DataPropertyIRI.TYPE_NAME.getOWLDataProperty(this.o));
-			dataPropertyIterator = dataPropertySet.iterator();
-
-			if(dataPropertyIterator.hasNext()) {
-				String name =dataPropertyIterator.next().getLiteral();
-				pt.setTypeName(name);
-			}else {
-				System.out.println("[ERROR] Erro ao identificar o nome do tipo primitivo.");
-				System.out.println("\tO programa será encerrado.");
-				System.exit(1);
-			}
-		}
 	}
 	
 	private void retrieveValueTypes() {
@@ -250,17 +212,6 @@ public class OWL2Django {
 			OWLNamedIndividual i = individualsAsIterator.next();
 			Column col = new Column(this.o, i);
 			columns.put(i, col);
-			
-//			Stream<OWLClass> allClassesStream = reasoner.getTypes(i).entities();
-//			Set<OWLClass> allClasses = allClassesStream.collect(Collectors.toSet());
-			
-//			if(allClasses.contains(ClassIRI.MULTIPLE_ENTITY_TABLE.getOWLClass(o))) {
-//				t.setTableType(TableType.MULTIPLE_ENTITIES_TABLE);
-//			}
-//			if(allClasses.contains(ClassIRI.SINGLE_ENTITY_TABLE.getOWLClass(o))) {
-//				t.setTableType(TableType.SINGLE_ENTITY_TABLE);
-//			}
-
 		}
 	}
 	
@@ -432,6 +383,7 @@ public class OWL2Django {
 			}
 			if(allClasses.contains(ClassIRI.MAPPED_FOREIGN_KEY.getOWLClass(o))) {
 				dv.setFk(true);
+				this.retrieveRelationshipCardinality(dv);
 			}
 			this.retrieveVariableMappings(dv);
 			
@@ -513,6 +465,80 @@ public class OWL2Django {
 	}
 	
 	
+	private void retrieveRelationshipCardinality(GenericVariable gv) {
+		Stream<OWLNamedIndividual> rangesStream;
+		Set<OWLNamedIndividual> rangesSet;
+		rangesStream = reasoner.getObjectPropertyValues(gv.getIndividual(), ObjectPropertyIRI.HAS_CARDINALITY.getOWLObjectProperty(this.o)).entities();
+		rangesSet = rangesStream.collect(Collectors.toSet());
+		
+		if(rangesSet.size()>0) {
+			RelationshipCardinality rc = new RelationshipCardinality(this.o, rangesSet.iterator().next());
+			gv.setRelationshipCardinality(rc);
+			relationshipCardinalities.put(rc.getIndividual(), rc);
+			
+			Set<OWLLiteral> dataPropertySet;
+			Iterator<OWLLiteral> dataPropertyIterator;
+			dataPropertySet = reasoner.getDataPropertyValues(rc.getIndividual(), DataPropertyIRI.RELATIONSHIP_CARDINALITY.getOWLDataProperty(this.o));
+			dataPropertyIterator = dataPropertySet.iterator();
+			boolean b = false;
+			if(dataPropertyIterator.hasNext()) {
+				String name =dataPropertyIterator.next().getLiteral();
+				for(RelationshipType rt : RelationshipType.values()) {
+					if(name.equals(rt.toString())) {
+						b=true;
+						gv.setRelationshipType(rt);
+					}
+				}
+				
+			}
+			if(!b){
+				System.out.println("[ERROR] Erro ao identificar a cardinalidade do relationamento.");
+				System.out.println("\tO programa será encerrado.");
+				System.exit(1);
+			}
+		}
+		
+		
+	}
+	public void printFile(String filePath) {
+		File outfile = new File(filePath);
+		
+		FileWriter fileWriter;
+		
+		try {
+			fileWriter = new FileWriter(outfile);
+			PrintWriter printWriter = new PrintWriter(fileWriter);
+			
+			String importString = "from django.db import models\n\n";
+			printWriter.print(importString);
+			
+			//imprimir todas as classes que não são subclasses
+			for(GenericClass c : classes.values()) {
+				if(c.isSubclass()) continue;
+				printWriter.print(c.toCode());
+				
+			}
+			
+			for(GenericClass c : classes.values()) {
+				if(!c.isSubclass()) continue;
+				InheritanceMapping im = null;
+				for(InheritanceMapping inh : inheritanceMappings.values()) {
+					if(inh.getSubclass().equals(c)) im = inh;
+				}
+				printWriter.print(c.toCode(im));
+				
+			}
+			
+			printWriter.close();
+			
+			
+		} catch (Exception e) {
+			System.out.println("[ERROR] Erro ao imprimir no arquivo " + filePath);
+			System.out.println("\tO programa será encerrado.");
+//			e.printStackTrace();
+			System.exit(1);
+		}
+	}
 	
 	
 }
