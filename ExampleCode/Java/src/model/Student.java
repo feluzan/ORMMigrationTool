@@ -3,12 +3,12 @@ package model;
 import javax.persistence.*;
 
 @Entity
-public class Studant extends Person {
+public class Student extends Person {
 	
 	private int registry;
 	
 	@ManyToOne
-	private Class studantClass;
+	private Class studentClass;
 
 	public int getRegistry() {
 		return registry;
@@ -18,11 +18,11 @@ public class Studant extends Person {
 		this.registry = registry;
 	}
 
-	public Class getStudantClass() {
-		return studantClass;
+	public Class getStudentClass() {
+		return studentClass;
 	}
 
-	public void setStudantClass(Class studantClass) {
-		this.studantClass = studantClass;
+	public void setStudentClass(Class studentClass) {
+		this.studentClass = studentClass;
 	}
 }

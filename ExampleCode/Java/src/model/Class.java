@@ -13,7 +13,7 @@ public class Class {
 	private int year;
 	
 	@OneToMany
-	private List<Studant> studants;
+	private List<Student> students;
 	
 	@ManyToMany
 	private List<Professor> professors;
@@ -37,12 +37,12 @@ public class Class {
 		this.year = year;
 	}
 
-	public List<Studant> getStudants() {
-		return studants;
+	public List<Student> getStudents() {
+		return students;
 	}
 
-	public void setStudants(List<Studant> studants) {
-		this.studants = studants;
+	public void setStudents(List<Student> students) {
+		this.students = students;
 	}
 
 	public List<Professor> getProfessors() {

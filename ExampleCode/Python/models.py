@@ -63,12 +63,12 @@ class Professor(Person):
 		pass
 
 
-class Studant(Person):
+class Student(Person):
 	registry = models.IntegerField()
-	studantClass = models.ForeignKey('Class', on_delete=models.CASCADE)
+	studentClass = models.ForeignKey('Class', on_delete=models.CASCADE)
 
 	class Meta:
-		db_table = 'Studant'
+		db_table = 'Student'
 		pass
 
 
